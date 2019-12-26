@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /logo.png
-actionText: My Article →  
+actionText: To Read →  
 actionLink: /frontEnd/ 
 features:
 - title: 标题1

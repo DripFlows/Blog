@@ -40,12 +40,12 @@ module.exports = {
           { text: "工具", link: "/tools/" }
         ]
       },
-      { text: "💡Todo", link: "/todo/" },
       {
         text: "💻项目",
         link: "/project/",
         items: []
       },
+      { text: "💡Todo", link: "/todo/" },
       { text: "Github", link: "https://github.com/DripFlows" }
     ],
     sidebar: {

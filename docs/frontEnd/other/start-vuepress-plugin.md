@@ -1,3 +1,9 @@
+---
+title: vuepress 插件开发总结
+lang: zh-CN
+author: sillyY
+update: 2019/12/26
+---
 # vuepress 插件开发总结
 
 由于某个组件库([ele-vue](http://sillyy.cn/ele-vue/))的文档缘故，故打算去开发 vuepress 的插件([vuepress-plugin-code-segment](http://sillyy.cn/vuepress-plugin-code-segment/))来帮助生产 demo 和 code。其间历时 1 个多月，总算幸不辱命。故在此记录其中艰辛。
