@@ -79,6 +79,12 @@ function getBlogSidebar(type) {
           children: []
         },
         {
+          title: "TypeScript",
+          children: [
+            ["./typescript/generic", "TS泛型积累"]
+          ]
+        },
+        {
           title: "Node",
           children: []
         },
