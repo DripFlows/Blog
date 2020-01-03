@@ -102,7 +102,8 @@ function getBlogSidebar(type) {
           title: "杂类",
           children: [
             ["./other/use-blog", "DripFlows博客使用规范"],
-            ["./other/start-vuepress-plugin", "vuepress-plugin开发总结"]
+            ["./other/start-vuepress-plugin", "vuepress-plugin开发总结"],
+            ["./other/chrome-helper/README", "记一次谷歌浏览器截图插件开发"],
           ]
         },
         {
