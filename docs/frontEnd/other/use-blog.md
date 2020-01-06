@@ -66,7 +66,7 @@ export default ({
 - npm run deploy 发布
 
 ::: warning
-`npm run deploy`内含 git 提交及博客发布，请小心使用
+`npm run deploy`内含 git 提交及博客发布，请放心使用
 :::
 
 <Valine />

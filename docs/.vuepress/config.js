@@ -43,7 +43,9 @@ module.exports = {
       {
         text: "💻项目",
         link: "/project/",
-        items: []
+        items: [
+          {text: "Chrome-helper", link: "https://github.com/DripFlows/chrome-helper"}
+        ]
       },
       { text: "💡Todo", link: "/todo/" },
       { text: "Github", link: "https://github.com/DripFlows" }
@@ -103,7 +105,7 @@ function getBlogSidebar(type) {
           children: [
             ["./other/use-blog", "DripFlows博客使用规范"],
             ["./other/start-vuepress-plugin", "vuepress-plugin开发总结"],
-            ["./other/chrome-helper/README", "记一次谷歌浏览器截图插件开发"],
+            ["./other/chrome-helper", "记一次谷歌浏览器截图插件开发"],
           ]
         },
         {
