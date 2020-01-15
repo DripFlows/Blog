@@ -47,6 +47,10 @@ module.exports = {
           {text: "Chrome-helper", link: "https://github.com/DripFlows/chrome-helper"}
         ]
       },
+      {
+        text: "📚推荐",
+        link: "/suggestions/"
+      },
       { text: "💡Todo", link: "/todo/" },
       { text: "Github", link: "https://github.com/DripFlows" }
     ],
@@ -55,7 +59,8 @@ module.exports = {
       "/backEnd/": getBlogSidebar("后端"),
       "/tools/": getBlogSidebar("工具"),
       "/learn/": getBlogSidebar("学习"),
-      "/project/": getBlogSidebar("项目")
+      "/project/": getBlogSidebar("项目"),
+      "/suggestions/": getBlogSidebar("推荐")
     }
   },
   plugins: {
@@ -144,5 +149,13 @@ function getBlogSidebar(type) {
 
     case "学习":
       return [["", "学无止境"]];
+
+    case "推荐":
+      return [
+        ["books", "图书"],
+        ["urls", "网络资源"],
+        ["npms", "NPM库"],
+        ["tricks", "奇技淫巧"]
+      ]
   }
 }
