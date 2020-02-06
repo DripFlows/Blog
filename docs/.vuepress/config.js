@@ -93,7 +93,9 @@ function getBlogSidebar(type) {
         },
         {
           title: "Node",
-          children: []
+          children: [
+            ["./node/node-primer", "node从0到1"]
+          ]
         },
         {
           title: "React"
@@ -111,6 +113,7 @@ function getBlogSidebar(type) {
             ["./other/use-blog", "DripFlows博客使用规范"],
             ["./other/start-vuepress-plugin", "vuepress-plugin开发总结"],
             ["./other/chrome-helper", "记一次谷歌浏览器截图插件开发"],
+            ["./other/electron-record", "写一个electron的录屏工具"],
           ]
         },
         {

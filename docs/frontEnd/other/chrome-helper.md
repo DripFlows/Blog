@@ -31,3 +31,167 @@ update: 2020/01/03
 既然大佬们已经定好方案了，那小弟只能撸起袖子干了。
 
 
+## 基础
+1. 创建manifest.json,这是插件的元数据，插件的配置信息，任何插件都必须要有这个文件，任何插件都必须要有这个文件
+```json
+{
+  "manifest_version": 2,
+  "name": "插件名",
+  "version": "1.0", // 用来判断是否需要更新
+  "description": "插件描述",
+  "browser_action": {
+      "default_icon": "static/favicon.ico", // 插件图标
+      "default_title": "插件图标上显示的内容",
+      "default_popup": "pages/popup.html"
+  },
+  "background": { // 后台运行的js，相当于后台进程
+      "scripts": ["scripts/background.js"],
+      "persistent": false
+  },
+  "permissions": [ // 授权信息 - 那些网站或者其他tab的授权
+    "tabs",
+    "unlimitedStorage",
+    "notifications",
+    "history",
+    "activeTab",
+    "storage",
+    "webRequestBlocking",
+    "*://*/*",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "web_accessible_resources": [ // 注入到网页的内容
+      "scripts/inject.js"
+  ],
+  "content_scripts": [{ // 内容js
+      "matches": ["http://*/*","https://*/*", "*://*/*"], // 匹配那些网站
+      "js": ["scripts/jquery.min.js", "scripts/inject.js"],
+      "run_at": "document_start"
+  }]
+}
+```
+
+## 代码示例
+```html
+<!-- popup.html 点击图标显示的内容 browser_action.default_popup 设置 -->
+<body>
+  <ul>
+    <li class="CaptureScreen">网页截图</li>
+  </ul>
+</body>
+<script src="../scripts/index.js"></script>
+```
+
+```js
+// scripts/index.js 入口页
+const $CaptureScreenBtn = $('.CaptureScreen') // 截屏按钮
+const popup = {
+  // 初始化
+  _init () {
+    this._initialEvent()
+    this._initScript()
+  },
+  // 事件初始化
+  _initialEvent () {
+    $CaptureScreenBtn.click(this.handleCaptureScreen)
+  },
+  // 脚本初始化
+  _initScript () {
+    this._sendMsg({ action: 'INJECT_SCRIPT' })
+  },
+  // 发送消息,和html通讯
+  _sendMsg (message, callback) {
+    // 对runtime发送消息
+    chrome.runtime.sendMessage(JSON.stringify(message), function(response) {
+      if (callback) callback(response)
+    })
+  },
+  // 接收消息
+  _getMsg () {
+    // 监听runtime中的信息
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+      switch (request.action) {
+        default:
+          break
+      }
+    })
+  },
+  // 开始截屏
+  handleCaptureScreen () {
+    // 获取当前窗口 -> 回调函数包括当前窗口的详细信息，如窗口id等
+    chrome.windows.getCurrent(function (win) {
+      // 抓取当前tab的内容
+      chrome.tabs.captureVisibleTab(win.id, {}, function (dataUrl) {
+        const info = {
+          action: 'CAPTURE_SCREEN',
+          payload: dataUrl
+        }
+        popup._sendMsg(info)
+      })
+    })
+  }
+}
+
+// scripts/background.js 后台进程，用于监听消息和转发消息
+// 消息群集
+chrome.runtime.onMessage.addListener(onRuntimeMessage)
+
+function sendPostMsg (info) {
+  window.postMessage(JSON.stringify(info), '*')
+}
+
+// 监听runtime消息
+/**
+ * @param {*} request
+ * @param {*} sender
+ * @param {*} sendResponse
+ */
+function onRuntimeMessage (request, _, sendResponse) {
+  // Tips: 需要sendResponse,不然可能会阻塞其他消息
+  const { action, payload } = JSON.parse(request)
+  sendResponse()
+}
+
+// 向网页注入js代码
+function injectScript () {
+  const link = 'scripts/inject.js'
+  const temp = document.createElement('script')
+  temp.setAttribute('type', 'text/javascript')
+  // 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js
+  temp.src = chrome.extension.getURL(link)
+  temp.onload = function() {
+    // 放在页面不好看，执行完后移除掉
+    this.parentNode.removeChild(this)
+  }
+  document.head.appendChild(temp)
+}
+
+// scripts/inject.js 此代码会注入到网页，所以在这边做为插件和网页的桥梁，通过postmessage来交互
+// 监听消息
+window.addEventListener('message', receivedMessage, false)
+
+// 发送postmessage消息
+function sendPostMsg (info) {
+  window.postMessage(JSON.stringify(info), '*')
+}
+```
+
+## 调试
+不管是撸代码的时候还是写完逻辑的时候，我们都期望能根据实际的表现来做出对应的操作，所以就涉及到调试了。Chrome直接支持javascript的调试，拥有了Chrome，就相当于拥有了一个强大的javascript调试器了。
+
+### 调试Content Script
+打开开发者工具,点击sources，找到对应的文件-> scripts/index.js，点击打开，就可以和平时调试js一样调试了
+
+### 调试Background
+由于background和content script并不在同一个运行环境中，因此上面的方法是看不到Background的javascript的。要调试Background，还需要打开插件页，也就是“chrome://extensions”。点对应的插件的“generated background page.html”，就出现了调试窗口，接下来的操作就跟前面的类似了。
+
+### 调试Popup
+虽然Popup和Background是处于同一运行环境中，但在刚才的Background的调试窗口中是看不到Popup的代码的。所以需要审核弹出内容，然后就跟之前的调试操作差不多了
+
+
+### 调试inject
+inject的话就会把代码注入到网页中，和conten相似的方式即可
+
+## 总结
+因为之前没有相关的开发经验，所以开始的时候会有点慌张，怕会延期耽误进度，后来开发完成之后，其实发现只要放平心态，认真仔细的阅读开发文档，做下来还是不难的。通过这次的实践，我差不多已经知道怎么去开发一款chrome插件了，当然，chrom插件的功能是非常强大的，这次用到的仅是冰山一角，要深入，还需要更加充分阅读文档和实践了。
+最后，虽然只是开发一个简单的截图工具，还是花费了老大的功夫，果然一入技术深似海，从此头发是路人~~~
