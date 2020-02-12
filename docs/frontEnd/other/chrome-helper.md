@@ -1,5 +1,5 @@
 ---
-title: TS泛型积累
+title: 谷歌浏览器开发
 lang: zh-CN
 author: frivolous
 update: 2020/01/03
@@ -22,14 +22,10 @@ update: 2020/01/03
 
 发现这个三个问题之后，回头看项目，得，这方案没法用了，项目中各种iframe嵌套（小声逼逼）。在找了下，没有找到其他更好的轮子了。于是乎，开始找产品扯皮。一顿巴拉巴拉之后（给产品洗脑安利方案一emmmmm）没成功，产品说方案一用户操作成本太高，体验不好。于是不得已抬出方案三（没做过这种插件，心里没底），然后经过一顿瞎逼分析之后，得出以下几个优劣势：
 
-1. 需要额外的安装插件，用户的学习成本和技术支持的额外支出（就一个缺点）
+1. 需要额外的安装插件，用户的学习成本和技术支持的额外支出（比较明显的一个缺点）
 2. 可拓展性强，以后还可以在此基础上拓展其它功能（可持续发展道路）
 3. 可维护性，可以作为一个独立的项目
 4. 逼格高（emmmm）
-
-## 过程
-既然大佬们已经定好方案了，那小弟只能撸起袖子干了。
-
 
 ## 基础
 1. 创建manifest.json,这是插件的元数据，插件的配置信息，任何插件都必须要有这个文件，任何插件都必须要有这个文件
@@ -70,10 +66,24 @@ update: 2020/01/03
   }]
 }
 ```
+## 项目结构
+~~~bash
+    ├── scripts                         脚本内容
+    │   ├── background.js
+    │   ├── index.js
+    │   ├── inject.js
+    │   ├── jquery.min.js
+    │   ├── popup.js
+    ├── pages                           页面内容（弹出页，背景页）
+    ├── static                          静态资源文件
+    ├── styles                          样式
+    ├── manifest.json                   chrome插件配置
+    ├── README.md                       项目描述文件
+~~~
 
 ## 代码示例
+1. popup.html 点击图标显示的内容, 在browser_action.default_popup 设置
 ```html
-<!-- popup.html 点击图标显示的内容 browser_action.default_popup 设置 -->
 <body>
   <ul>
     <li class="CaptureScreen">网页截图</li>
@@ -81,9 +91,8 @@ update: 2020/01/03
 </body>
 <script src="../scripts/index.js"></script>
 ```
-
+3. scripts/index.js 入口页
 ```js
-// scripts/index.js 入口页
 const $CaptureScreenBtn = $('.CaptureScreen') // 截屏按钮
 const popup = {
   // 初始化
@@ -131,8 +140,11 @@ const popup = {
     })
   }
 }
-
-// scripts/background.js 后台进程，用于监听消息和转发消息
+```
+4. scripts/background.js 
+* 后台进程，用于监听消息和转发消息
+* 可以操作html
+```js
 // 消息群集
 chrome.runtime.onMessage.addListener(onRuntimeMessage)
 
@@ -165,8 +177,9 @@ function injectScript () {
   }
   document.head.appendChild(temp)
 }
-
-// scripts/inject.js 此代码会注入到网页，所以在这边做为插件和网页的桥梁，通过postmessage来交互
+```
+5. scripts/inject.js 此代码会注入到网页，所以在这边做为插件和网页的桥梁，通过postmessage来交互
+```js
 // 监听消息
 window.addEventListener('message', receivedMessage, false)
 

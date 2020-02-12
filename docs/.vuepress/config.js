@@ -74,17 +74,17 @@ function getBlogSidebar(type) {
     case "前端":
       return [
         ["", "欢迎"],
-        {
-          title: "HTML"
-        },
-        {
-          title: "CSS",
-          children: []
-        },
-        {
-          title: "JavaScript",
-          children: []
-        },
+        // {
+        //   title: "HTML"
+        // },
+        // {
+        //   title: "CSS",
+        //   children: []
+        // },
+        // {
+        //   title: "JavaScript",
+        //   children: []
+        // },
         {
           title: "TypeScript",
           children: [
@@ -97,16 +97,16 @@ function getBlogSidebar(type) {
             ["./node/node-primer", "node从0到1"]
           ]
         },
-        {
-          title: "React"
-        },
-        {
-          title: "Vue"
-        },
-        {
-          title: "小程序",
-          children: []
-        },
+        // {
+        //   title: "React"
+        // },
+        // {
+        //   title: "Vue"
+        // },
+        // {
+        //   title: "小程序",
+        //   children: []
+        // },
         {
           title: "杂类",
           children: [
@@ -116,49 +116,49 @@ function getBlogSidebar(type) {
             ["./other/electron-record", "写一个electron的录屏工具"],
           ]
         },
-        {
-          title: "网络协议"
-        },
-        {
-          title: "Git"
-        },
-        {
-          title: "函数式编程"
-        },
-        {
-          title: "算法"
-        },
-        {
-          title: "设计模式",
-          children: []
-        },
-        {
-          title: "源码阅读",
-          children: []
-        }
+        // {
+        //   title: "网络协议"
+        // },
+        // {
+        //   title: "Git"
+        // },
+        // {
+        //   title: "函数式编程"
+        // },
+        // {
+        //   title: "算法"
+        // },
+        // {
+        //   title: "设计模式",
+        //   children: []
+        // },
+        // {
+        //   title: "源码阅读",
+        //   children: []
+        // }
       ];
 
-    case "后端":
-      return [
-        {
-          title: "服务器",
-          children: []
-          // collapsable: false,
-        }
-      ];
+    // case "后端":
+    //   return [
+    //     {
+    //       title: "服务器",
+    //       children: []
+    //       // collapsable: false,
+    //     }
+    //   ];
 
-    case "工具":
-      return [];
+    // case "工具":
+    //   return [];
 
-    case "学习":
-      return [["", "学无止境"]];
+    // case "学习":
+    //   return [["", "学无止境"]];
 
-    case "推荐":
-      return [
-        ["books", "图书"],
-        ["urls", "网络资源"],
-        ["npms", "NPM库"],
-        ["tricks", "奇技淫巧"]
-      ]
+    // case "推荐":
+    //   return [
+    //     ["books", "图书"],
+    //     ["urls", "网络资源"],
+    //     ["npms", "NPM库"],
+    //     ["tricks", "奇技淫巧"]
+    //   ]
   }
 }
