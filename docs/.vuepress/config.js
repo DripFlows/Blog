@@ -81,10 +81,12 @@ function getBlogSidebar(type) {
         //   title: "CSS",
         //   children: []
         // },
-        // {
-        //   title: "JavaScript",
-        //   children: []
-        // },
+        {
+          title: "JavaScript",
+          children: [
+            ["./javascript/svelte-counter",'svelte尝鲜之计数器']
+          ]
+        },
         {
           title: "TypeScript",
           children: [
@@ -153,12 +155,12 @@ function getBlogSidebar(type) {
     // case "学习":
     //   return [["", "学无止境"]];
 
-    // case "推荐":
-    //   return [
-    //     ["books", "图书"],
-    //     ["urls", "网络资源"],
-    //     ["npms", "NPM库"],
-    //     ["tricks", "奇技淫巧"]
-    //   ]
+    case "推荐":
+      return [
+        ["books", "图书"],
+        ["urls", "网络资源"],
+        ["npms", "NPM库"],
+        ["tricks", "奇技淫巧"]
+      ]
   }
 }
