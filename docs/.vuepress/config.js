@@ -116,6 +116,7 @@ function getBlogSidebar(type) {
             ["./other/start-vuepress-plugin", "vuepress-plugin开发总结"],
             ["./other/chrome-helper", "记一次谷歌浏览器截图插件开发"],
             ["./other/electron-record", "写一个electron的录屏工具"],
+            ["./other/vscode-tree-view", "vscode插件开发之侧边栏"]
           ]
         },
         // {
