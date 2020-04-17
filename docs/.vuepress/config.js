@@ -44,7 +44,10 @@ module.exports = {
         text: "💻项目",
         link: "/project/",
         items: [
-          {text: "Chrome-helper", link: "https://github.com/DripFlows/chrome-helper"}
+          {
+            text: "Chrome-helper",
+            link: "https://github.com/DripFlows/chrome-helper"
+          }
         ]
       },
       {
@@ -83,25 +86,20 @@ function getBlogSidebar(type) {
         // },
         {
           title: "JavaScript",
-          children: [
-            ["./javascript/svelte-counter",'svelte尝鲜之计数器']
-          ]
+          children: [["./javascript/svelte-counter", "svelte尝鲜之计数器"]]
         },
         {
           title: "TypeScript",
-          children: [
-            ["./typescript/generic", "TS泛型积累"]
-          ]
+          children: [["./typescript/generic", "TS泛型积累"]]
         },
         {
           title: "Node",
-          children: [
-            ["./node/node-primer", "node从0到1"]
-          ]
+          children: [["./node/node-primer", "node从0到1"]]
         },
-        // {
-        //   title: "React"
-        // },
+        {
+          title: "React",
+          children: [["./react/hook-in-project", "React Hook在项目"]]
+        },
         // {
         //   title: "Vue"
         // },
@@ -118,7 +116,7 @@ function getBlogSidebar(type) {
             ["./other/electron-record", "写一个electron的录屏工具"],
             ["./other/vscode-tree-view", "vscode插件开发之侧边栏"]
           ]
-        },
+        }
         // {
         //   title: "网络协议"
         // },
@@ -162,6 +160,6 @@ function getBlogSidebar(type) {
         ["urls", "网络资源"],
         ["npms", "NPM库"],
         ["tricks", "奇技淫巧"]
-      ]
+      ];
   }
 }
