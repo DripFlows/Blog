@@ -430,7 +430,6 @@ useEffect(updateTitle)     // 🔴 3 （之前为 4）。替换更新标题的 e
 
 另外*Hook*的本质就是*在不编写 class 的情况下使用 state 以及其他的 React 特性*
 
-### 使用ESLint插件
 
 ## 结语
 
