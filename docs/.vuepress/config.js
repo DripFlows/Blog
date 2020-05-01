@@ -100,9 +100,10 @@ function getBlogSidebar(type) {
           title: "React",
           children: [["./react/hook-in-project", "React Hook在项目"]]
         },
-        // {
-        //   title: "Vue"
-        // },
+        {
+          title: "Vue",
+          children: [["./vue/from-defineProperty-to-proxy", "从Object.defineProperty到Proxy"]]
+        },
         // {
         //   title: "小程序",
         //   children: []
