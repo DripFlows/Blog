@@ -94,7 +94,7 @@ function getBlogSidebar(type) {
         },
         {
           title: "Node",
-          children: [["./node/node-primer", "node从0到1"]]
+          children: [["./node/node-primer", "一个前端渣渣的node开发体验"]]
         },
         {
           title: "React",
@@ -115,7 +115,8 @@ function getBlogSidebar(type) {
             ["./other/start-vuepress-plugin", "vuepress-plugin开发总结"],
             ["./other/chrome-helper", "记一次谷歌浏览器截图插件开发"],
             ["./other/electron-record", "写一个electron的录屏工具"],
-            ["./other/vscode-tree-view", "vscode插件开发之侧边栏"]
+            ["./other/vscode-tree-view", "vscode插件开发之侧边栏"],
+            ["./other/js-decorate", "初识ES装饰器Decorate"]
           ]
         }
         // {
