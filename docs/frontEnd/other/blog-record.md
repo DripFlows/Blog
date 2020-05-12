@@ -11,9 +11,9 @@
 
 ## 第二期
 ### Node服务端设计
-- [本站链接](http://localhost:8080/frontEnd/node/node-primer.html)
+- [本站链接](/frontEnd/node/node-primer.html)
 - [掘金](https://juejin.im/post/5eb3e1b4e51d45244e7c2d09)
 
 ### Object.defineProperty与Proxy
-- [本站链接](http://localhost:8080/frontEnd/vue/from-defineProperty-to-proxy.html#object-defineproperty)
+- [本站链接](/frontEnd/vue/from-defineProperty-to-proxy.html#object-defineproperty)
 - [掘金](https://juejin.im/post/5eabf26af265da7b9c245350)
