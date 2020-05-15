@@ -100,8 +100,11 @@ function getBlogSidebar(type) {
           children: [['./node/node-primer', '一个前端渣渣的node开发体验']],
         },
         {
-          title: 'React',
-          children: [['./react/hook-in-project', 'React Hook在项目']],
+          title: "React",
+          children: [
+            ["./react/hook-in-project", "React Hook在项目"],
+            ["./react/webpack-build-react", "用webpack搭建前端项目的一点点心得"],
+          ]
         },
         {
           title: 'Vue',
