@@ -139,9 +139,10 @@ function getBlogSidebar(type) {
         // {
         //   title: "函数式编程"
         // },
-        // {
-        //   title: "算法"
-        // },
+        {
+          title: "算法",
+          children: [["./algorithm/one-algorithm", "渣渣的算法题之路"]]
+        },
         // {
         //   title: "设计模式",
         //   children: []
